@@ -16,7 +16,7 @@
  *    Created on  23 Dec 2016
  *
  ************************************************************************/
-package org.eclipse.packagedrone.client.model;
+package de.dsa.packagedrone.client.model;
 
 import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 

@@ -16,7 +16,7 @@
  *    Created on  23 Dec 2016
  *
  ************************************************************************/
-package org.eclipse.packagedrone.client;
+package de.dsa.packagedrone.client;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -31,12 +31,6 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
-import org.eclipse.packagedrone.client.model.Artifact;
-import org.eclipse.packagedrone.client.model.Channel;
-import org.eclipse.packagedrone.client.util.ConnectionUtil;
-import org.eclipse.packagedrone.client.util.FilterUtil;
-import org.eclipse.packagedrone.client.util.HttpResponseValidator;
-import org.eclipse.packagedrone.client.util.ValidationUtil;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.helper.StringUtil;
@@ -50,6 +44,13 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+
+import de.dsa.packagedrone.client.model.Artifact;
+import de.dsa.packagedrone.client.model.Channel;
+import de.dsa.packagedrone.client.util.ConnectionUtil;
+import de.dsa.packagedrone.client.util.FilterUtil;
+import de.dsa.packagedrone.client.util.HttpResponseValidator;
+import de.dsa.packagedrone.client.util.ValidationUtil;
 
 public class PackageDroneServer {
 

@@ -13,18 +13,32 @@
  *
  * Initial Creation:
  *    Author      sro
- *    Created on  21 Dec 2016
+ *    Created on  23 Dec 2016
  *
  ************************************************************************/
-package org.eclipse.packagedrone.client.util;
+package de.dsa.packagedrone.client.util;
 
-import org.jsoup.nodes.Element;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
 
-public class ValidationUtil {
+public class ConnectionUtil {
+    public static String readUrl(String urlString) throws Exception {
+        BufferedReader reader = null;
+        try {
+            URL url = new URL(urlString);
+            reader = new BufferedReader(new InputStreamReader(url.openStream()));
+            StringBuffer buffer = new StringBuffer();
+            int read;
+            char[] chars = new char[1024];
+            while ((read = reader.read(chars)) != -1)
+                buffer.append(chars, 0, read);
 
-    public static void checkElement(String name, Element elem) {
-        if (elem == null) {
-            throw new RuntimeException("Unable to find " + name);
+            return buffer.toString();
+        } finally {
+            if (reader != null)
+                reader.close();
         }
+
     }
 }

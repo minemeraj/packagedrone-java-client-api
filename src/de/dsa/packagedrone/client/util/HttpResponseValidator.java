@@ -16,7 +16,7 @@
  *    Created on  21 Dec 2016
  *
  ************************************************************************/
-package org.eclipse.packagedrone.client.util;
+package de.dsa.packagedrone.client.util;
 
 import org.apache.http.client.HttpResponseException;
 import org.jsoup.Connection;

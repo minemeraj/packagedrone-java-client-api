@@ -16,23 +16,15 @@
  *    Created on  21 Dec 2016
  *
  ************************************************************************/
-package org.eclipse.packagedrone.client;
+package de.dsa.packagedrone.client.util;
 
-public class Main {
-    public static final String HOST = "";
-    public static final String USERNAME = "";
-    public static final String PASSWORD = "";
+import org.jsoup.nodes.Element;
 
-    public static void main(String[] args) {
-        try {
-            PackageDroneServer droneServer = new PackageDroneServer(HOST, USERNAME, PASSWORD);
-            for (String string : args) {                
-                droneServer.cleanChannel(string);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+public class ValidationUtil {
+
+    public static void checkElement(String name, Element elem) {
+        if (elem == null) {
+            throw new RuntimeException("Unable to find " + name);
         }
-
     }
-
 }

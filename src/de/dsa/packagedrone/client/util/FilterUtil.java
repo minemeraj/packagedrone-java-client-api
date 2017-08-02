@@ -13,32 +13,26 @@
  *
  * Initial Creation:
  *    Author      sro
- *    Created on  23 Dec 2016
+ *    Created on  5 Jan 2017
  *
  ************************************************************************/
-package org.eclipse.packagedrone.client.util;
+package de.dsa.packagedrone.client.util;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.URL;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.stream.Collectors;
 
-public class ConnectionUtil {
-    public static String readUrl(String urlString) throws Exception {
-        BufferedReader reader = null;
-        try {
-            URL url = new URL(urlString);
-            reader = new BufferedReader(new InputStreamReader(url.openStream()));
-            StringBuffer buffer = new StringBuffer();
-            int read;
-            char[] chars = new char[1024];
-            while ((read = reader.read(chars)) != -1)
-                buffer.append(chars, 0, read);
+import de.dsa.packagedrone.client.model.Artifact;
 
-            return buffer.toString();
-        } finally {
-            if (reader != null)
-                reader.close();
-        }
+public class FilterUtil {
+    public static List<Artifact> filturebyExtension(List<Artifact> atrifacts, String extension) {
+        return atrifacts.parallelStream().filter(atrifact -> atrifact.getExtension().equals(extension)).collect(Collectors.toList());
+    }
 
+    public static Map<String, List<Artifact>> filterbyGroupWithSingleElement(Map<String, List<Artifact>> map) {
+        Map<String, List<Artifact>> artifactMap = map.entrySet().parallelStream().filter(artifactGroup -> artifactGroup.getValue().size() > 1)
+            .collect(Collectors.toMap(artifactGroup -> artifactGroup.getKey(), artifactGroup -> artifactGroup.getValue()));
+        return new TreeMap<String, List<Artifact>>(artifactMap);
     }
 }

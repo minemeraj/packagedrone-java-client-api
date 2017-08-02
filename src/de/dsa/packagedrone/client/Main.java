@@ -13,26 +13,26 @@
  *
  * Initial Creation:
  *    Author      sro
- *    Created on  5 Jan 2017
+ *    Created on  21 Dec 2016
  *
  ************************************************************************/
-package org.eclipse.packagedrone.client.util;
+package de.dsa.packagedrone.client;
 
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
-import java.util.stream.Collectors;
+public class Main {
+    public static final String HOST = "";
+    public static final String USERNAME = "";
+    public static final String PASSWORD = "";
 
-import org.eclipse.packagedrone.client.model.Artifact;
+    public static void main(String[] args) {
+        try {
+            PackageDroneServer droneServer = new PackageDroneServer(HOST, USERNAME, PASSWORD);
+            for (String string : args) {                
+                droneServer.cleanChannel(string);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-public class FilterUtil {
-    public static List<Artifact> filturebyExtension(List<Artifact> atrifacts, String extension) {
-        return atrifacts.parallelStream().filter(atrifact -> atrifact.getExtension().equals(extension)).collect(Collectors.toList());
     }
 
-    public static Map<String, List<Artifact>> filterbyGroupWithSingleElement(Map<String, List<Artifact>> map) {
-        Map<String, List<Artifact>> artifactMap = map.entrySet().parallelStream().filter(artifactGroup -> artifactGroup.getValue().size() > 1)
-            .collect(Collectors.toMap(artifactGroup -> artifactGroup.getKey(), artifactGroup -> artifactGroup.getValue()));
-        return new TreeMap<String, List<Artifact>>(artifactMap);
-    }
 }
